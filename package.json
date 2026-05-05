@@ -1,0 +1,46 @@
+{
+  "name": "digit-ynab-mcp",
+  "version": "0.1.0-local",
+  "description": "Local-first YNAB MCP server for Codex and agent workflows.",
+  "author": "Caleb LeNoir",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "bin": {
+    "digit-ynab-mcp": "./dist/index.js",
+    "ynab-mcp-server": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "examples",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "npm run build && vitest run",
+    "test:build-verification": "npm run build && vitest run src/tools/__tests__/build-verification.test.ts",
+    "test:full-inherited": "vitest run src/tools/__tests__",
+    "smoke:tools": "node examples/smoke-tool-inventory.mjs"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.4",
+    "axios": "^1.8.4",
+    "mcp-framework": "^0.1.29",
+    "ynab": "^2.9.0",
+    "ynab-v4": "npm:ynab@^4.1.0",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.24.6"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "@types/node": "^20.11.24",
+    "@vitest/coverage-v8": "^1.4.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.4.0"
+  }
+}
