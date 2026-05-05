@@ -3,6 +3,14 @@
   "version": "0.1.0-local",
   "description": "Local-first YNAB MCP server for Codex and agent workflows.",
   "author": "Caleb LeNoir",
+  "homepage": "https://getdigit.app/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meh-S-Eze/digit-ynab-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Meh-S-Eze/digit-ynab-mcp/issues"
+  },
   "type": "module",
   "engines": {
     "node": "22.x"

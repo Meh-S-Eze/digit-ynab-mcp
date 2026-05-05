@@ -6,6 +6,14 @@ This repo is the reusable MCP server code. It exposes structured YNAB tools for 
 
 It is intentionally limited to the MCP server. It does not include hosted app auth, onboarding, billing, support, landing pages, product UI, or private personal-budget workflow files.
 
+## Digit
+
+[Digit for YNAB](https://getdigit.app/) is the hosted product being built around this MCP engine.
+
+This open-source repo is for people who want to wire YNAB into their own agent setup. Digit is for YNAB users who want the same kind of budget clarity without having to configure an MCP server, manage tokens by hand, or build their own safety workflow.
+
+The product direction is simple: start with a read-only Preview that helps you ask real budget questions without changing anything in YNAB. From there, Advanced setup can support review-and-confirm changes for users who intentionally opt into budget actions.
+
 ## Safety Default
 
 The server defaults to read-only mode:
@@ -89,4 +97,4 @@ The default `npm test` suite is scoped to extraction-safe build, read, and write
 
 ## Product Boundary
 
-This repo stays limited to MCP server source, examples, and tests. Product-specific UX, hosted auth, and personal budgeting skills should live outside this repository.
+This repo stays limited to MCP server source, examples, and tests. Product-specific UX, hosted auth, managed onboarding, and personal budgeting skills live outside this repository.
