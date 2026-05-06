@@ -32,15 +32,9 @@ Digit YNAB MCP exposes YNAB as agent tools instead of asking a model to improvis
 
 ## Who This Is For
 
-Use this repo if you are building a local agent workflow and you are comfortable supplying your own YNAB token, choosing your MCP client, and reviewing any budget changes your agent proposes.
+Use this repo if you want to give an MCP-capable agent a real YNAB tool layer: budget context, transaction analysis, cache-backed reads, and optional write tools you can keep behind your own review workflow.
 
-This repo is not:
-
-- The hosted Digit app.
-- OAuth onboarding for nontechnical users.
-- A billing, support, or product UI layer.
-- A replacement for human review before YNAB writes.
-- A place to store personal budget exports or tokens.
+It is especially useful for local Codex/OpenClaw/Hermes-style setups where you want the agent to work from structured YNAB data instead of pasted exports or ad hoc API calls.
 
 ## Digit For YNAB
 
