@@ -45,7 +45,7 @@ These 20 tools are registered only when `YNAB_MCP_ENABLE_WRITES=true`.
 | `approve_transaction` | Approve or unapprove a transaction. |
 | `clear_transaction` | Mark a transaction as cleared, uncleared, or reconciled. |
 | `create_account` | Create a YNAB account. |
-| `create_category` | Create a category after preflight validation. See known category-create limitation in the README. |
+| `create_category` | Create a category after preflight validation. |
 | `create_category_group` | Create a category group. |
 | `create_multiple_transactions` | Create multiple transactions in one request. |
 | `create_payee` | Create a payee. |

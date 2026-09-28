@@ -42,3 +42,9 @@ explains that the standalone MCP does not require the web app or a Digit account
 Package homepage metadata points to this repository. The canonical local README
 and package metadata received the same edits to prevent reintroducing old links.
 This is a documentation/metadata change; MCP runtime behavior is unchanged.
+
+The owner also confirmed the earlier category-create issue is resolved. Remove
+the open-limitation wording from the README and tool catalog, and retain the
+support template as explicitly resolved historical context. This confirmation is
+owner-reported; no new live YNAB write was performed. Existing defensive error
+handling remains in place.

@@ -1,11 +1,13 @@
-# YNAB Category Create API Mismatch Template
+# Resolved: YNAB Category Create API Mismatch
 
-Use this template when reporting a category-create mismatch to YNAB API support.
+Status: resolved, as confirmed by the maintainer on September 28, 2026. This is a historical troubleshooting record, not a current limitation.
+
+Use the template below only if the same category-create mismatch recurs.
 Do not include access tokens, raw transaction exports, account IDs, or private budget data.
 
 ## Summary
 
-Category creation appears documented and available, but a live create request was rejected with `400 bad_request` even though the `category_group_id` came from a successful `GET /plans/{plan_id}/categories` response immediately before the create request.
+The earlier issue was a live create request rejected with `400 bad_request` even though the `category_group_id` came from a successful `GET /plans/{plan_id}/categories` response immediately before the create request.
 
 ## Environment
 

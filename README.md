@@ -193,7 +193,6 @@ The default `npm test` suite is scoped to extraction-safe build, read, write-gat
 
 ## Known Limitations
 
-- Category creation currently includes a guard for an observed YNAB API mismatch where `POST /plans/{plan_id}/categories` can reject a category group ID returned by `GET /plans/{plan_id}/categories`. See [the support template](docs/support/category-create-api-mismatch-template.md).
 - This repo currently supports source and pinned Git installs. npm package publishing is intentionally deferred.
 - This repo does not include OAuth onboarding or hosted token management.
 - MCP clients differ in how they display tool calls and confirmation prompts. Test your own client before enabling writes.
