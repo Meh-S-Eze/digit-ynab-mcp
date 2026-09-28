@@ -33,3 +33,12 @@ snapshot must not be described as freshly build- or test-validated.
 TruffleHog filesystem scan completed with exit 0 and no findings, with secret
 verification and update checks disabled. All 80 compared source/package/test
 files match the local snapshot byte for byte.
+
+## Hosted web app maintenance notice
+
+The owner subsequently stated that the Digit web app is no longer maintained.
+The README now states this near the top, removes hosted-product promotion, and
+explains that the standalone MCP does not require the web app or a Digit account.
+Package homepage metadata points to this repository. The canonical local README
+and package metadata received the same edits to prevent reintroducing old links.
+This is a documentation/metadata change; MCP runtime behavior is unchanged.

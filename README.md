@@ -4,7 +4,7 @@ A local-first Model Context Protocol server that lets AI agents work with YNAB t
 
 This repo is for builders who want to connect YNAB to Codex, Claude Desktop, OpenClaw, Hermes, or another stdio MCP client. It gives an agent a typed tool layer for reading budgets, analyzing transactions, planning changes, and, when explicitly enabled, writing updates back to YNAB.
 
-If you are a YNAB user who wants the guided hosted product instead of configuring an MCP server, see [Digit for YNAB](https://getdigit.app/).
+**Hosted web app status:** The Digit web app at `getdigit.app` is no longer maintained. This repository contains the standalone YNAB MCP server, which runs locally and does not require a Digit account or the hosted web app.
 
 ## What It Does
 
@@ -35,14 +35,6 @@ Digit YNAB MCP exposes YNAB as agent tools instead of asking a model to improvis
 Use this repo if you want to give an MCP-capable agent a real YNAB tool layer: budget context, transaction analysis, cache-backed reads, and optional write tools you can keep behind your own review workflow.
 
 It is especially useful for local Codex/OpenClaw/Hermes-style setups where you want the agent to work from structured YNAB data instead of pasted exports or ad hoc API calls.
-
-## Digit For YNAB
-
-[Digit](https://getdigit.app/) is the hosted product being built around this MCP engine.
-
-The open-source MCP is for builders who want direct control over their own agent setup. Digit is for YNAB users who want the same kind of budget clarity without configuring MCP, managing tokens by hand, or building their own safety workflow.
-
-Digit starts with a read-only Preview: ask real budget questions without changing anything in YNAB. Advanced setup can later support review-and-confirm actions for users who intentionally opt into budget changes.
 
 ## Tool Overview
 
