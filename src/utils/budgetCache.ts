@@ -175,6 +175,7 @@ export function readBudgetCacheSection(
     last_synced_at: cache.lastSyncedAt,
     last_full_sync_at: cache.lastFullSyncAt,
   };
+  const entityLookups = createEntityLookups(budget);
 
   if (section === "metadata") {
     return {
@@ -217,9 +218,11 @@ export function readBudgetCacheSection(
 
   if (section === "scheduled_transactions") {
     const scheduled = filterBySearch(
-      filterDeleted(budget.scheduled_transactions || [], includeDeleted),
-      options.search || options.payeeName || options.accountName,
-      ["memo", "payee_name", "account_name"]
+      filterDeleted(budget.scheduled_transactions || [], includeDeleted).map((transaction: any) =>
+        enrichTransaction(transaction, entityLookups)
+      ),
+      options.search || options.payeeName || options.accountName || options.categoryName,
+      ["memo", "payee_name", "account_name", "category_name"]
     );
     return {
       ...metadata,
@@ -231,7 +234,9 @@ export function readBudgetCacheSection(
 
   if (section === "transactions") {
     const transactions = filterTransactions(
-      filterDeleted(budget.transactions || [], includeDeleted),
+      filterDeleted(budget.transactions || [], includeDeleted).map((transaction: any) =>
+        enrichTransaction(transaction, entityLookups)
+      ),
       options
     ).sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
     return {
@@ -258,6 +263,7 @@ export function readBudgetCacheSection(
     accounts: filterDeleted(budget.accounts || [], false).map(formatAccount),
     current_month: formatMonth((budget.months || []).find((entry: any) => entry.month === currentMonth())),
     recent_transactions: filterDeleted(budget.transactions || [], false)
+      .map((transaction: any) => enrichTransaction(transaction, entityLookups))
       .sort((a: any, b: any) => String(b.date || "").localeCompare(String(a.date || "")))
       .slice(0, Math.min(limit, 25))
       .map(formatTransaction),
@@ -366,6 +372,44 @@ function flattenCategories(budget: Record<string, any>): any[] {
   );
 }
 
+interface EntityLookups {
+  accounts: Map<string, any>;
+  payees: Map<string, any>;
+  categories: Map<string, any>;
+}
+
+function createEntityLookups(budget: Record<string, any>): EntityLookups {
+  return {
+    accounts: new Map(
+      (budget.accounts || [])
+        .filter((account: any) => account?.id)
+        .map((account: any) => [account.id, account])
+    ),
+    payees: new Map(
+      (budget.payees || [])
+        .filter((payee: any) => payee?.id)
+        .map((payee: any) => [payee.id, payee])
+    ),
+    categories: new Map(
+      flattenCategories(budget)
+        .filter((category: any) => category?.id)
+        .map((category: any) => [category.id, category])
+    ),
+  };
+}
+
+function enrichTransaction(transaction: any, lookups: EntityLookups): any {
+  return {
+    ...transaction,
+    account_name:
+      transaction.account_name || lookups.accounts.get(transaction.account_id)?.name || transaction.account_name,
+    payee_name:
+      transaction.payee_name || lookups.payees.get(transaction.payee_id)?.name || transaction.payee_name,
+    category_name:
+      transaction.category_name || lookups.categories.get(transaction.category_id)?.name || transaction.category_name,
+  };
+}
+
 function countBudgetEntities(budget: Record<string, any>): Record<string, number> {
   return {
     accounts: filterDeleted(budget.accounts || [], false).length,
@@ -423,6 +467,12 @@ function formatTransaction(transaction: any) {
     memo: transaction.memo || null,
     cleared: transaction.cleared,
     approved: transaction.approved,
+    import_id: transaction.import_id ?? null,
+    matched_transaction_id: transaction.matched_transaction_id ?? null,
+    transfer_account_id: transaction.transfer_account_id ?? null,
+    transfer_transaction_id: transaction.transfer_transaction_id ?? null,
+    scheduled_transaction_id: transaction.scheduled_transaction_id ?? null,
+    deleted: transaction.deleted ?? null,
   };
 }
 
@@ -440,6 +490,9 @@ function formatScheduledTransaction(transaction: any) {
     category_id: transaction.category_id,
     category_name: transaction.category_name,
     memo: transaction.memo || null,
+    transfer_account_id: transaction.transfer_account_id ?? null,
+    transfer_transaction_id: transaction.transfer_transaction_id ?? null,
+    deleted: transaction.deleted ?? null,
   };
 }
 

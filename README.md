@@ -23,7 +23,7 @@ Digit YNAB MCP exposes YNAB as agent tools instead of asking a model to improvis
 | Area | Current behavior |
 | --- | --- |
 | Runtime | Node.js 22, stdio MCP |
-| Install status | Source install today, npm publishing later |
+| Install status | Source or pinned Git install today, npm publishing later |
 | Auth | `YNAB_API_TOKEN` or `YNAB_TOKEN` environment variable |
 | Default safety | Read-only tools only |
 | Write opt-in | `YNAB_MCP_ENABLE_WRITES=true` |
@@ -110,6 +110,20 @@ YNAB_BUDGET_ID="<budget-id>"
 
 Get a YNAB Personal Access Token from YNAB's developer settings. Keep it in environment variables or your MCP client's secret storage. Do not commit it.
 
+## Consume A Pinned Git Revision
+
+Applications can depend on a tested commit without waiting for an npm release:
+
+```json
+{
+  "dependencies": {
+    "digit-ynab-mcp": "github:Meh-S-Eze/digit-ynab-mcp#<commit-sha>"
+  }
+}
+```
+
+Git installs run the package build automatically. Pin a full commit SHA for deployed applications so MCP changes are promoted intentionally.
+
 ## MCP Client Configuration
 
 Generic stdio shape:
@@ -188,7 +202,7 @@ The default `npm test` suite is scoped to extraction-safe build, read, write-gat
 ## Known Limitations
 
 - Category creation currently includes a guard for an observed YNAB API mismatch where `POST /plans/{plan_id}/categories` can reject a category group ID returned by `GET /plans/{plan_id}/categories`. See [the support template](docs/support/category-create-api-mismatch-template.md).
-- This repo currently supports source install. npm package publishing is intentionally deferred.
+- This repo currently supports source and pinned Git installs. npm package publishing is intentionally deferred.
 - This repo does not include OAuth onboarding or hosted token management.
 - MCP clients differ in how they display tool calls and confirmation prompts. Test your own client before enabling writes.
 

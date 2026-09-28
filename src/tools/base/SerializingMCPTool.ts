@@ -111,7 +111,7 @@ export abstract class SerializingMCPTool<Input extends Record<string, any> = {}>
   }
 
   // Override inputSchema to support both formats
-  get inputSchema() {
+  get inputSchema(): { type: "object"; properties?: Record<string, object>; required?: string[] } {
     // Check if schema is the old format (object with type/description wrappers)
     // We check if the values have 'type' and 'description' properties
     const isOldFormat =
@@ -135,7 +135,7 @@ export abstract class SerializingMCPTool<Input extends Record<string, any> = {}>
     delete jsonSchema.$schema;
     delete jsonSchema.definitions;
 
-    return jsonSchema as { type: "object"; properties?: Record<string, unknown> };
+    return jsonSchema as { type: "object"; properties?: Record<string, object>; required?: string[] };
   }
 
   // Override toolCall to handle validation for both formats

@@ -10,6 +10,7 @@ export default defineConfig({
       'src/tools/__tests__/GenerateSpendingReportTool.test.ts',
       'src/tools/__tests__/GetUnapprovedTransactionsTool.test.ts',
       'src/tools/__tests__/PrelaunchEntityTools.test.ts',
+      'src/utils/__tests__/budgetCache.test.ts',
       'src/tools/__tests__/build-verification.test.ts',
       'src/tools/__tests__/toolRegistry.test.ts',
     ],
