@@ -22,7 +22,10 @@ Git-install support, and synthetic cache regression tests.
 - [x] Prepare isolated publication snapshot, preserving the local working tree.
 - [x] Retain synthetic cache tests and explicit package build preparation.
 - [x] Scan snapshot for accidental credentials without verifying any secrets.
-- [ ] Commit and push to public `main`, then read back the remote commit.
+- [x] Commit and push to public `main`, then read back the remote commit.
+
+Source publication commit: `64fca75da5722db0a29282b6bf354d20cd596c74`.
+Push succeeded and GitHub's commits API returned this exact SHA for `main`.
 
 Build and tests are intentionally not run for this publication. The current
 snapshot must not be described as freshly build- or test-validated.

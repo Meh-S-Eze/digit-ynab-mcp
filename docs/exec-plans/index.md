@@ -4,11 +4,11 @@ This directory is the system of record for long-running Digit YNAB MCP server im
 
 ## Active
 
-- [Public MCP source synchronization](active/2026-09-28-public-source-sync.md)
+No active execution plans are open.
 
 ## Completed
 
-No completed execution plans have been archived yet.
+- [Public MCP source synchronization](completed/2026-09-28-public-source-sync.md)
 
 ## Directory Rules
 
